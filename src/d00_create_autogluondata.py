@@ -30,7 +30,7 @@ def create_input_and_write(is_train):
 def create_input_multiprocess(ids):
     """Create input in multi process."""
     
-    threads = 2
+    threads = 1
     p = mp.Pool(threads)
     pool_results = p.map(create_input, np.array_split(ids, threads * 2))   
     p.close()
