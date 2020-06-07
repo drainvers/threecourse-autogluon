@@ -39,7 +39,7 @@ def run_all(runtype, version):
 
 def run_ipython(fname, args):
     """Run python script with args."""
-    check_call(["ipython", fname] + args)
+    check_call(["python", fname] + args)
 
 # def run_bash(fname, args):
 #     """Run bash script with args."""
