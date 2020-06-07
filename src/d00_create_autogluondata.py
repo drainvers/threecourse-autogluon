@@ -18,19 +18,19 @@ def create_input_and_write(is_train):
 
     if is_train:
         train_ids = pd.read_pickle("../model/train_ids.pkl")
-        autogluondata = create_input(train_ids)
+        autogluondata = create_input_multiprocess(train_ids)
         joblib.dump(autogluondata, '../model/autogluondata_train.pkl') 
         LOG.info("finished train write")
     else:
         test_ids = pd.read_pickle("../model/test_ids.pkl")
-        autogluondata = create_input(test_ids)
+        autogluondata = create_input_multiprocess(test_ids)
         joblib.dump(autogluondata, '../model/autogluondata_test.pkl') 
         LOG.info("finished test write")
 
 def create_input_multiprocess(ids):
     """Create input in multi process."""
     
-    threads = 1
+    threads = 2
     p = mp.Pool(threads)
     pool_results = p.map(create_input, np.array_split(ids, threads * 2))   
     p.close()
