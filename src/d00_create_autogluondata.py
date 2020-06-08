@@ -32,7 +32,7 @@ def create_input_multiprocess(ids):
     
     threads = 2
     p = mp.Pool(threads)
-    pool_results = p.map(create_input, np.array_split(ids, threads * 2))   
+    pool_results = p.map(create_input, np.array_split(ids, threads * 4))   
     p.close()
     p.join()
 
